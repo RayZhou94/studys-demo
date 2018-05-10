@@ -1,0 +1,15 @@
+nodes:
+  server1:
+    id: 1
+    host: localhost
+    port: 13333
+  server2:
+    id: 2
+    host: localhost
+    port: 14444
+  server3:
+    id: 3
+    host: localhost
+    port: 15555
+  myId: 2
+  logDir: "./log/server2.log"

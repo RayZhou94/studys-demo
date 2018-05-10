@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jdbc.Mapper">
+    <!-- 自定义返回结果集 -->
+    <resultMap id="UrlMap" type="entity.Url">
+        <result property="id" column="id"/>
+        <result property="url" column="url"/>
+        <result property="text" column="text"/>
+        <result property="height" column="height"/>
+        <result property="description" column="description"/>
+    </resultMap>
+    <sql id="tb">
+        tb_url
+    </sql>
+
+    <select id="selectAll" resultMap="UrlMap">
+        select * from <include refid="tb"/>
+    </select>
+
+    <select id="selectBy" resultMap="UrlMap" parameterType="String">
+        select * from <include refid="tb"/>
+        WHERE height = #{var}
+    </select>
+
+    <select id="selectOne" resultMap="UrlMap" parameterType="Long">
+        select * from <include refid="tb"/>
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="UrlMap">
+        INSERT INTO <include refid="tb"/>
+        (id, url, text, height, description)
+        VALUE (#{id}, #{url}, #{text}, #{height}, #{description})
+    </insert>
+</mapper>
