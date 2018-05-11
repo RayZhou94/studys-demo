@@ -3,9 +3,11 @@ package entity;
 import lombok.Data;
 
 @Data
-public class Url {
+public class UrlInfo {
 
     private Long id;
+
+    private Long pid;
 
     private String url;
 

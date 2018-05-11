@@ -20,6 +20,7 @@ public class MatchUtil {
     public static Matcher bodyMatcher(String input){
         return BODY_PATTERN.matcher(input);
     }
+
     public static Matcher imgMatcher(String input){
         return IMG_PATTERN.matcher(input);
     }

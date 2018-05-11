@@ -1,6 +1,6 @@
 package jdbc;
 
-import entity.Url;
+import entity.UrlInfo;
 
-public class UrlDao extends BaseDao<Url> {
+public class UrlDao extends BaseDao<UrlInfo> {
 }
