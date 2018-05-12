@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class MatchUtil {
 
     private static final String HTML_REGEX = ".+\\.(html|htm|com)";
-    private static final String BODY_REGEX = "<body>.+</body>";
+    private static final String BODY_REGEX = "(?<=<(body)[^>]*>).*(?=</\\1>)";
     private static final String IMG_REGEX = ".+\\.(jpg|jpeg|gif|png)";
 
     private static Pattern HTML_PATTERN = Pattern.compile(HTML_REGEX);

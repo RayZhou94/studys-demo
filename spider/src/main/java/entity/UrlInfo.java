@@ -13,6 +13,8 @@ public class UrlInfo {
 
     private String text;
 
+    private Boolean isImg;
+
     /**
      * 路径深度
      */
