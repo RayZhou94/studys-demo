@@ -12,6 +12,13 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     private Message message;
 
+    public ClientHandler(){
+
+    }
+
+    public ClientHandler(Message message){
+        this.message = message;
+    }
     /**
      * 接收server端的消息，并打印出来
      *
