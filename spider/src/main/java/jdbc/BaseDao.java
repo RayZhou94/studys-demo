@@ -4,70 +4,54 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
-public class BaseDao<T> implements Mapper<T> {
+public class BaseDao<T> {
 
-    private SqlSession sqlSession;
+    private static Mapper mapper;
 
+    private static SqlSession sqlSession;
 
-    @Override
+    static {
+        try {
+            sqlSession = DBUtils.getSession();
+            mapper = sqlSession.getMapper(Mapper.class);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public List<T> selectAll() {
         List<T> list = null;
-        try {
-            sqlSession = DBUtils.getSession();
-            Mapper<T> mapper = sqlSession.getMapper(Mapper.class);
-            list = mapper.selectAll();
-            sqlSession.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            sqlSession.close();
-        }
+        list = mapper.selectAll();
+        sqlSession.commit();
         return list;
     }
 
-    @Override
     public List<T> selectBy(String var) {
         List<T> list = null;
-        try {
-            sqlSession = DBUtils.getSession();
-            Mapper<T> mapper = sqlSession.getMapper(Mapper.class);
-            list = mapper.selectBy(var);
-            sqlSession.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            sqlSession.close();
-        }
+        list = mapper.selectBy(var);
+        sqlSession.commit();
         return list;
     }
 
-    @Override
     public T selectOne(Long id) {
         T t = null;
-        try {
-            sqlSession = DBUtils.getSession();
-            Mapper<T> mapper = sqlSession.getMapper(Mapper.class);
-            t = mapper.selectOne(id);
-            sqlSession.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            sqlSession.close();
-        }
+        t = (T) mapper.selectOne(id);
+        sqlSession.commit();
         return t;
     }
 
-    @Override
     public void insert(T t) {
         try {
             sqlSession = DBUtils.getSession();
-            Mapper<T> mapper = sqlSession.getMapper(Mapper.class);
+            mapper = sqlSession.getMapper(Mapper.class);
             mapper.insert(t);
             sqlSession.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-            sqlSession.close();
+            if (sqlSession != null){
+                sqlSession.close();
+            }
         }
     }
 }

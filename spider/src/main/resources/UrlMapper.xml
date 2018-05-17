@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jdbc.Mapper">
     <!-- 自定义返回结果集 -->
-    <resultMap id="UrlMap" type="entity.UrlInfo">
+    <resultMap id="UrlMap" type="entity.Url">
         <result property="id" column="id"/>
-        <result property="pid" column="pid"/>
         <result property="url" column="url"/>
         <result property="text" column="text"/>
         <result property="height" column="height"/>
         <result property="description" column="description"/>
+        <result property="gmtCreate" column="gmt_create"/>
     </resultMap>
     <sql id="tb">
         tb_url
@@ -28,9 +28,9 @@
         WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="UrlMap">
+    <insert id="insert" parameterType="entity.Url">
         INSERT INTO <include refid="tb"/>
-        (id, pid, url, text, height, description)
-        VALUE (#{id},#{pid}, #{url}, #{text}, #{height}, #{description})
+        (id, url, text, height, description, gmt_create)
+        VALUE (#{id}, #{url}, #{text}, #{height}, #{description}, now())
     </insert>
 </mapper>

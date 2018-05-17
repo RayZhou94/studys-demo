@@ -1,1 +1,1 @@
-# studys-demo
+# studys-server

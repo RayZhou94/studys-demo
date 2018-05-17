@@ -10,8 +10,8 @@ import ioc.context.DefaultContext;
 public class Test {
     //public static void main(String[] args) {
     //    DefaultContext defaultContext = new DefaultContext("test");
-    //    Demo demo = defaultContext.getBean("Demo");
-    //    demo.printer();
+    //    Demo server = defaultContext.getBean("Demo");
+    //    server.printer();
     //}
 
     public static void testAop(){

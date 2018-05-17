@@ -12,6 +12,7 @@
         <module>spring</module>
         <module>paxos</module>
         <module>spider</module>
+        <module>netty-demo</module>
     </modules>
 
     <properties>
@@ -21,6 +22,9 @@
         <httpclient.verison>4.3</httpclient.verison>
         <mybatis.version>3.4.5</mybatis.version>
         <spring.version>4.3.13.RELEASE</spring.version>
+        <mysql.version>5.1.25</mysql.version>
+        <netty.version>4.1.21.Final</netty.version>
+        <log.version>1.7.21</log.version>
     </properties>
 
 
@@ -79,6 +83,24 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
+                <version>${netty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${log.version}</version>
             </dependency>
 
         </dependencies>
