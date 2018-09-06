@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
  */
 public class DefaultForkJoinTask extends AbstractForkJoinTask<List<Integer>> {
 
-    private static AbstractForkJoinTask<List<Integer>> forkJoinTask;
-
     /**
      * 阈值
      */
@@ -57,14 +55,4 @@ public class DefaultForkJoinTask extends AbstractForkJoinTask<List<Integer>> {
         return taskList.stream().sorted((a,b)->b.compareTo(a)).limit(10).collect(Collectors.toList());
     }
 
-    public static AbstractForkJoinTask<List<Integer>> getInstance(List<Integer> taskList, int threshold){
-        if (forkJoinTask == null){
-            synchronized (DefaultForkJoinTask.class){
-                if (forkJoinTask == null){
-                    return new DefaultForkJoinTask(taskList, threshold);
-                }
-            }
-        }
-        return forkJoinTask;
-    }
 }

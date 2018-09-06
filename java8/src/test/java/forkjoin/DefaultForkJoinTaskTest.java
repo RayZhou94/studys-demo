@@ -46,7 +46,7 @@ public class DefaultForkJoinTaskTest {
 
         long forjoinBegin = System.currentTimeMillis();
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-        AbstractForkJoinTask<List<Integer>> forkJoinTask = DefaultForkJoinTask.getInstance(taskList, threshold);
+        AbstractForkJoinTask<List<Integer>> forkJoinTask = new DefaultForkJoinTask(taskList, threshold);
         ForkJoinTask<List<Integer>> future = forkJoinPool.submit(forkJoinTask);
         List<Integer> result = future.get();
         System.out.println(result.size());
