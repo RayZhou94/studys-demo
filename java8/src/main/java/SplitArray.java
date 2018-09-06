@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -11,8 +10,15 @@ import java.util.stream.Stream;
 public class SplitArray {
 
     public static void main(String[] args) {
-        List<String> array = Arrays.asList("a","b","c","d","e","f","g","h","i","j","k","l","m","n");
+        long begin = System.currentTimeMillis();
+        List<String> array = new ArrayList<>(100000000);
+        for (int i = 0; i < 1000000; i++){
+            array.add("array" + i);
+        }
         split(array);
+        long end = System.currentTimeMillis();
+
+        System.out.println(end - begin);
     }
 
     public static void split(List<String> array){
@@ -30,9 +36,9 @@ public class SplitArray {
         arrayList.parallelStream().forEach(var->print(var));
     }
 
-    public synchronized static void print(List array){
+    public static void print(List array){
         array.forEach(System.out::print);
-        System.out.println("xxx");
+        System.out.println("    " + Thread.currentThread().getName());
     }
 
     public static void split2(List<String> array){
